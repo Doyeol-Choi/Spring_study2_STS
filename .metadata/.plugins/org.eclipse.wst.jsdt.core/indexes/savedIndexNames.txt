@@ -1,0 +1,2 @@
+INDEX VERSION 1.4+D:\정보처리산업기사 수업\Study\SpringSTS\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2594137443.index
