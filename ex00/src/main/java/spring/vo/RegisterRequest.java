@@ -1,5 +1,6 @@
 package spring.vo;
 
+// command 객체
 public class RegisterRequest {
 	private String email;
 	private String password;

@@ -6,4 +6,7 @@
 	<bean id="registerController" class="spring.controller.RegisterController">
 		<property name="memberRegisterService" ref="regSvc" />
 	</bean>
+	
+	<!-- <bean class="spring.controller.MainController"></bean> -->
+	<bean class="spring.controller.SurveyController"></bean>
 </beans>

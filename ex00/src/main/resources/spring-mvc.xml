@@ -12,4 +12,8 @@
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/WEB-INF/views/" />
 	</mvc:view-resolvers>
+	
+	<!-- /main, / 이라는 경로로 들어오는 경우 main.jsp로 바로 연결 시켜주세요 -->
+	<mvc:view-controller path="/main" view-name="main"/>
+	<mvc:view-controller path="/" view-name="main"/>
 </beans>

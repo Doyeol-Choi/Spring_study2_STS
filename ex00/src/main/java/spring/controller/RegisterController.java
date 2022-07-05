@@ -1,7 +1,9 @@
 package spring.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,11 +41,13 @@ public class RegisterController {
 	
 	// 클라이언트에서 값 얻어오기 2번 방법
 	@PostMapping("/step2")
-	public String handlerStep2(@RequestParam(value="agree", required=false, defaultValue="false")boolean agree) {	
+	public String handlerStep2(@RequestParam(value="agree", required=false, defaultValue="false")boolean agree, Model model) {	
 		// @RequsetParam은 1번 방법과 달리 자동으로 형태변환 해줄 수 있다.
 		if(!agree) {
 			return "redirect:step1";
 		}
+		// form 커스텀 태그의 오류 제어
+		model.addAttribute("formData", new RegisterRequest());
 		
 		return "register/step2";
 	}
@@ -62,7 +66,7 @@ public class RegisterController {
 //	}
 	
 	@PostMapping("/step3")
-	public String handlerStep3(RegisterRequest regReq) {	//	setter 메서드 기준으로 받아온다.
+	public String handlerStep3(@ModelAttribute("formData")RegisterRequest regReq) {	//	setter 메서드 기준으로 받아온다.
 //								@RequestParam("email") String email,
 //							    @RequestParam("name") String name,
 //							    @RequestParam("password") String password,
@@ -74,6 +78,7 @@ public class RegisterController {
 //		System.out.println("암호 확인 : " + regReq.getConfirmPassword());
 		
 		try {
+			// memberRegisterService의 regist메서드를 통해 DB에 저장
 			memberRegisterService.regist(regReq);
 			return "register/step3";			
 		} catch(AlreadyExistingMemberException e) {
