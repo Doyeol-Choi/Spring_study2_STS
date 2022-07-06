@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.regex.Pattern"/>
+    <fullyQualifiedTypeName name="java.util.regex.Matcher"/>
+    <fullyQualifiedTypeName name="spring.vo.Member"/>
+    <fullyQualifiedTypeName name="spring.vo.LoginCommand"/>
+    <fullyQualifiedTypeName name="org.springframework.validation.ValidationUtils"/>
+    <fullyQualifiedTypeName name="spring.exception.IdPasswordNotMatchingException"/>
+</qualifiedTypeNameHistroy>

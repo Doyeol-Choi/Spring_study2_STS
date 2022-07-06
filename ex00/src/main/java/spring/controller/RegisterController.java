@@ -2,6 +2,7 @@ package spring.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import spring.exception.AlreadyExistingMemberException;
 import spring.service.MemberRegisterService;
+import spring.validator.RegisterRequestValidator;
 import spring.vo.RegisterRequest;
 
 @Controller
@@ -66,7 +68,7 @@ public class RegisterController {
 //	}
 	
 	@PostMapping("/step3")
-	public String handlerStep3(@ModelAttribute("formData")RegisterRequest regReq) {	//	setter 메서드 기준으로 받아온다.
+	public String handlerStep3(@ModelAttribute("formData")RegisterRequest regReq, Errors err) {	//	setter 메서드 기준으로 받아온다.
 //								@RequestParam("email") String email,
 //							    @RequestParam("name") String name,
 //							    @RequestParam("password") String password,
@@ -77,16 +79,24 @@ public class RegisterController {
 //		System.out.println("암호 : " + regReq.getPassword());
 //		System.out.println("암호 확인 : " + regReq.getConfirmPassword());
 		
+		// 커멘드 객체 값을 검증
+		// 검증 후 에러가 있는지 체크(에러코드가 나온게 있는지 체크)
+		new RegisterRequestValidator().validate(regReq, err);
+		// 서블릿에서 만들어 넣어줄수 있는 Errors를 매개변수로 추가해서 jsp에서 확인한다.
+		
+		if(err.hasErrors()) {	// 에러가 있는지 체크
+			return "register/step2";
+		}
+		
 		try {
 			// memberRegisterService의 regist메서드를 통해 DB에 저장
 			memberRegisterService.regist(regReq);
 			return "register/step3";			
 		} catch(AlreadyExistingMemberException e) {
-			e.printStackTrace();
+			err.rejectValue("email", "duplicate");	// 중복 에러
 			return "register/step2";	// redirect를 쓰면 step2에 get방식으로 접근을 막아놨기때문에 step1로 간다.
 		}
 			
 	}
-
 	
 }

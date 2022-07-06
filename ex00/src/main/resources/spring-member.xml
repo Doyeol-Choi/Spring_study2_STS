@@ -44,4 +44,8 @@
 	<bean id="changePwdSvc" class="spring.service.ChangePasswordService">
 		<constructor-arg ref="dao" />
 	</bean>
+	
+	<bean id="authService" class="spring.service.AuthService">
+		<property name="memberDao" ref="dao" />
+	</bean>
 </beans>
