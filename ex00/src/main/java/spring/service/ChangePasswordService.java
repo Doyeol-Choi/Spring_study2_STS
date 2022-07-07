@@ -24,6 +24,5 @@ public class ChangePasswordService {
 		member.changePassword(oldPwd, newPwd);
 		
 		dao.updateMember(member);
-	}
-	
+	}	
 }

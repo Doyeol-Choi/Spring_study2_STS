@@ -8,4 +8,12 @@
     <fullyQualifiedTypeName name="spring.vo.LoginCommand"/>
     <fullyQualifiedTypeName name="org.springframework.validation.ValidationUtils"/>
     <fullyQualifiedTypeName name="spring.exception.IdPasswordNotMatchingException"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="spring.vo.ChangePwdCommand"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
+    <fullyQualifiedTypeName name="spring.validator.ChangePwdCommandValidator"/>
+    <fullyQualifiedTypeName name="spring.service.ChangePasswordService"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.HandlerInterceptor"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.handler.HandlerInterceptorAdapter"/>
 </qualifiedTypeNameHistroy>

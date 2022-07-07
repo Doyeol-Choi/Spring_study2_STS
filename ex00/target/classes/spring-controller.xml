@@ -13,4 +13,10 @@
 	<bean class="spring.controller.LoginController">
 		<property name="authService" ref="authService" />
 	</bean>
+	
+	<bean class="spring.controller.LogoutController"></bean>
+	
+	<bean class="spring.controller.ChangePwdController">
+		<property name="changePasswordService" ref="changePwdSvc" />
+	</bean>
 </beans>
