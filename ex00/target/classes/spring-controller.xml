@@ -19,4 +19,8 @@
 	<bean class="spring.controller.ChangePwdController">
 		<property name="changePasswordService" ref="changePwdSvc" />
 	</bean>
+	
+	<bean class="spring.controller.MemberListController">
+		<property name="dao" ref="dao" />
+	</bean>
 </beans>

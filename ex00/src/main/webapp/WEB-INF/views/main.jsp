@@ -19,6 +19,7 @@
 		<p><a href="<c:url value='/edit/changePassword' />">[비밀번호 변경]</a></p>
 		<p><a href="<c:url value='/logout' />">[로그 아웃]</a></p>
 	</c:if>
+	<p><a href="<c:url value='/member/list' />">[날짜별 회원 정보 보기]</a></p>
 	<p><a href="<c:url value='/survey' />">[설문조사 하기]</a></p>
 </body>
 </html>

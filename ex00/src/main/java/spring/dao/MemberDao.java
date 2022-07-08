@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -137,4 +138,24 @@ public class MemberDao {
 		
 		if(num==1) System.out.println("삭제 성공!");
 	}
+	
+	// 날짜를 이용한 회원 조회 메서드
+	public List<Member> selectByRegDate(Date from, Date to) {
+		String sql = "SELECT * FROM members WHERE regDate BETWEEN ? AND ? ORDER BY regDate";
+		
+		List<Member> list = jdbcTemplate.query(sql, new RowMapper<Member>() {
+
+			@Override
+			public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Member m = new Member(
+						rs.getString("email"),
+						rs.getString("password"),
+						rs.getString("name"),
+						rs.getTimestamp("regDate"));
+				m.setId(rs.getLong("id"));
+				return m;
+			}}, from, to);
+		return list;
+	}
+	
 }
