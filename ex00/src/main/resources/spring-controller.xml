@@ -23,4 +23,10 @@
 	<bean class="spring.controller.MemberListController">
 		<property name="dao" ref="dao" />
 	</bean>
+	
+	<bean class="spring.controller.MemberDetailController">
+		<property name="dao" ref="dao" />
+	</bean>
+	
+	<bean class="spring.controller.CommonExceptionHandler" />
 </beans>

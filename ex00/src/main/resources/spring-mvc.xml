@@ -9,6 +9,7 @@
 	
 	<mvc:default-servlet-handler/>
 	
+	<!-- return으로 String에 주소를 적어줄떄 앞뒤에 붙을 내용 -->
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/WEB-INF/views/" />
 	</mvc:view-resolvers>
