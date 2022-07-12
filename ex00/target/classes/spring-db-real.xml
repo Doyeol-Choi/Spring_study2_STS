@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	profile="real">
+
+	<!-- 실 사용용 DB서버에 연결할 [데이터 소스] -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<!-- 1. 연결 드라이버 -->
+		<property name="driverClass" value="oracle.jdbc.OracleDriver"/>
+        <!-- 2. DB서버 주소 -->
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@oracle.interstander.com:41521:xe"/>
+        <!-- 3. 계정 ID -->
+		<property name="user" value="green"/>
+        <!-- 4. 계정 PW -->
+		<property name="password" value="1234"/>
+		<property name="maxPoolSize" value="20" />
+	</bean>
+
+</beans>

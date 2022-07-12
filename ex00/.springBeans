@@ -10,10 +10,10 @@
 		<config>src/main/resources/spring-member.xml</config>
 		<config>src/main/resources/spring-mvc.xml</config>
 		<config>src/main/resources/spring-controller.xml</config>
+		<config>src/main/resources/spring-db-dev.xml</config>
+		<config>src/main/resources/spring-db-real.xml</config>
 	</configs>
 	<autoconfigs>
-		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>
-		<config>src/main/webapp/WEB-INF/spring/root-context.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>
