@@ -17,7 +17,6 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
     <fullyQualifiedTypeName name="org.springframework.jdbc.core.RowMapper"/>
-    <fullyQualifiedTypeName name="spring.vo.Member"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ExceptionHandler"/>
     <fullyQualifiedTypeName name="spring.exception.MemberNotFoundException"/>
@@ -34,4 +33,9 @@
     <fullyQualifiedTypeName name="spring.controller.ChangePwdController"/>
     <fullyQualifiedTypeName name="spring.controller.MemberListController"/>
     <fullyQualifiedTypeName name="spring.controller.MemberDetailController"/>
+    <fullyQualifiedTypeName name="org.springframework.context.support.GenericApplicationContext"/>
+    <fullyQualifiedTypeName name="spring.vo.Member"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.AnnotationConfigApplicationContext"/>
+    <fullyQualifiedTypeName name="spring.config.DbRealConfig"/>
+    <fullyQualifiedTypeName name="org.springframework.core.io.ClassPathResource"/>
 </qualifiedTypeNameHistroy>
