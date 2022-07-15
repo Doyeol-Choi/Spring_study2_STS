@@ -1,9 +1,6 @@
 INDEX VERSION 1.4+D:\정보처리산업기사 수업\Study\SpringSTS\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3801668252.index
-25808885.index
-657211703.index
 2594137443.index
-3410931793.index
 2487545169.index
-4214581340.index
+4014263395.index
+3303878799.index
 1671250500.index

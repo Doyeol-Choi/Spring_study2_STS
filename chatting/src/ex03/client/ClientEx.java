@@ -32,15 +32,15 @@ public class ClientEx {
 				out.write(outputMessage + "\n");
 				out.flush();
 				
-				if(outputMessage.equals("exit") || outputMessage.equals("")) {
-					
+				if(outputMessage.equalsIgnoreCase("exit") || outputMessage.equals("")) {
+					System.out.println("종료합니다.");
 					break;
 				}
 				
 				String inputMessage = in.readLine();
 				System.out.println("서버>> " + inputMessage);
 				
-				if(inputMessage.equals("exit") || inputMessage.equals("")) {
+				if(inputMessage.equalsIgnoreCase("exit") || inputMessage.equals("")) {
 					System.out.println("상대방이 나갔습니다.");
 					break;
 				}
