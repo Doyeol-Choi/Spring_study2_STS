@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- 트랜젝션 관리 객체 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- 추가 Bean -->
+	<bean id="regSvc" class="spring.service.MemberRegisterService">
+		<constructor-arg ref="dao" />
+	</bean>
+	
+	<bean id="changePwdSvc" class="spring.service.ChangePasswordService">
+		<constructor-arg ref="dao" />
+	</bean>
+	
+	<bean id="authService" class="spring.service.AuthService">
+		<property name="memberDao" ref="dao" />
+	</bean>
+	
+</beans>

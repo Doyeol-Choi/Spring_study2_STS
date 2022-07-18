@@ -12,6 +12,8 @@
 		<config>src/main/resources/spring-controller.xml</config>
 		<config>src/main/resources/spring-db-dev.xml</config>
 		<config>src/main/resources/spring-db-real.xml</config>
+		<config>src/main/resources/spring-mybatis.xml</config>
+		<config>src/main/resources/spring-member2.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

@@ -34,9 +34,9 @@
 	</bean>
 	
 	<!-- DAO -->
-	<bean id="dao" class="spring.dao.MemberDao">
+	<!-- <bean id="dao" class="spring.dao.MemberDao">
 		<constructor-arg ref="jdbcTemplate" />
-	</bean>
+	</bean> -->
 	
 	<!-- 추가 Bean -->
 	<bean id="regSvc" class="spring.service.MemberRegisterService">

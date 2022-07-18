@@ -31,7 +31,7 @@ public class MemberListController {
 		
 		if(listCommand.getFrom() != null && listCommand.getTo() != null) {
 			// 날짜 데이터가 존재 할때만 조회한 데이터를 보낸다.
-			List<Member> list = dao.selectByRegDate(listCommand.getFrom(), listCommand.getTo());
+			List<Member> list = dao.selectByRegDate(listCommand);
 			
 			model.addAttribute("members", list);
 		}

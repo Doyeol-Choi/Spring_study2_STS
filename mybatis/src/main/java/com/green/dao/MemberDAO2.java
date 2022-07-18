@@ -106,4 +106,29 @@ public class MemberDAO2 {	// mybatis 설정을 읽어서 DB에 접속할 DAO
 		
 		return num;
 	}
+	
+	// 이메일 그리고 이름으로 회원 정보 조회
+	public List<MemberVO> searchMember(MemberVO mVo){
+		List<MemberVO> list = null;
+		
+		sqlMapper = getFactory();
+		SqlSession session = sqlMapper.openSession();
+		
+//		list = session.selectList("com.green.mapper.member.selectMember", mVo);
+		list = session.selectList("com.green.mapper.member.selectMemberChoose", mVo);
+		
+		return list;
+	}
+	
+	// 여러명의 이름으로 검색
+	public List<MemberVO> foreachSearchMember(List<String> names){
+		List<MemberVO> list = null;
+		
+		sqlMapper = getFactory();
+		SqlSession session = sqlMapper.openSession();
+		
+		list = session.selectList("com.green.mapper.member.forEachSearch", names);
+		
+		return list;
+	}
 }

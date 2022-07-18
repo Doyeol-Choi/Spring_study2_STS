@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spring.member">
+
+	<resultMap type="member" id="mVo"><!-- 수동으로 컬럼과 자바객체를 매핑 -->
+  		<result column="id" property="id" />
+  		<result column="name" property="name" />
+  		<result column="email" property="email" />
+  		<result column="password" property="password" />
+  		<result column="regDate" property="registerDate" />
+  	</resultMap>
+  	
+  	<!-- 중복되는 쿼리 묶어서 처리 -->
+  	<sql id="selAllMember">
+  		SELECT * FROM members
+  	</sql>
+  	
+  	<select id="selectByEmail" resultMap="mVo" parameterType="String">
+  		<include refid="selAllMember" />
+  		WHERE email = #{email}
+  	</select>
+  	
+  	<select id="selectAll" resultMap="mVo">
+  		<include refid="selAllMember" />
+  		ORDER BY id ASC
+  	</select>
+  	
+  	<select id="selectByRegDate" resultMap="mVo" parameterType="spring.vo.ListCommand">
+  		<include refid="selAllMember" />
+  		WHERE regDate BETWEEN #{from} AND #{to} ORDER BY regDate
+  	</select>
+
+	<select id="selectById" resultMap="mVo" parameterType="long">
+		<include refid="selAllMember" />
+		WHERE id = #{id}
+	</select>
+	
+	<select id="selectCount" resultType="int">
+		SELECT count(*) FROM members
+	</select>
+  	
+  	<insert id="insertMember" parameterType="member">
+  		INSERT INTO members VALUES (members_seq.nextval,#{email},#{password},#{name},sysdate)
+  	</insert>
+  	
+  	<update id="updateMember" parameterType="member">
+  		UPDATE members SET name=#{name}, password=#{password} WHERE email=#{email}
+  	</update>
+  	
+  	<delete id="deleteMember" parameterType="String">
+  		DELETE FROM members WHERE email=#{email}
+  	</delete>
+	
+</mapper>

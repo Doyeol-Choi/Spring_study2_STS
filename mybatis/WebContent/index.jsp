@@ -16,5 +16,8 @@
 	<a href="<c:url value='http://localhost:8085/mybatis/UM' />">[회원 변경]</a><br>
 	<a href="<c:url value='http://localhost:8085/mybatis/DM' />">[회원 삭제]</a><br>
 	<br><br>
+	<a href="<c:url value='http://localhost:8085/mybatis/SM' />">[회원 정보 조회]</a><br>
+	<a href="<c:url value='http://localhost:8085/mybatis/FSM' />">[회원 이름 조회]</a><br>
+	<br><br>
 </body>
 </html>

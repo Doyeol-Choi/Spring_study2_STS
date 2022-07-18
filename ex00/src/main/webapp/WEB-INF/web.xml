@@ -15,7 +15,8 @@
 			<param-value>
 				classpath:spring-mvc.xml
 				classpath:spring-controller.xml
-				classpath:spring-member.xml
+				classpath:spring-member2.xml
+				classpath:spring-mybatis.xml
 <!-- 				classpath:spring-db-dev.xml
 				classpath:spring-db-real.xml -->
 			</param-value>

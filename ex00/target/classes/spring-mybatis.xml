@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:property-placeholder location="classpath:message/db.properties"/>
+	
+	<!-- 첫번째 빈 : 데이터 소스(커넥션 풀) -->
+	<bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
+		<property name="driver" value="${db.driver}"/>
+		<property name="url" value="${db.dev.jdbcUrl}"/>
+		<property name="username" value="${db.dev.user}"/>
+		<property name="password" value="${db.dev.password}"/>
+	</bean>
+	
+	<!-- 두번째 빈 : SqlSessionFactory (config.xml, mapper.xml을 불러오도록 만든다.) -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		
+		<property name="configLocation" value="classpath:mybatis/conf/mybatisConfig.xml" />
+		
+		<property name="mapperLocations" value="classpath:mybatis/mapper/*.xml" />	<!-- mapper폴더 안의 xml 파일은 다 가져온다. -->
+	</bean>
+	
+	<!-- 세번째 빈 : SqlSession -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- 네번째 빈 : MemberDao -->
+	<bean id="dao" class="spring.dao.MemberDao">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	
+</beans>

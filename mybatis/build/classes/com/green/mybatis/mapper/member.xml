@@ -12,9 +12,14 @@
   		<result column="regDate" property="registerDate" />
   	</resultMap>
   	
+  	<sql id="sel">
+  		SELECT * FROM members
+  	</sql>
+  	
 	<!-- <select id="selectAll" resultType="memVo"> -->
 	<select id="selectAll" resultMap="mVo">
-		SELECT * FROM members
+		<!-- SELECT * FROM members -->
+		<include refid="sel" />
 		ORDER BY id DESC
 	</select>
 	
@@ -41,5 +46,69 @@
 		DELETE FROM members
 		WHERE email=#{email}
 	</delete>
+	
+	<!-- 동적 SQL문 생성 : IF -->
+	<select id="selectMember" resultMap="mVo" parameterType="memVo">
+		SELECT * FROM members
+		
+		<where>
+			<if test="email != '' and email != null">
+				email = #{email}	<!-- SELECT * FROM members WHERE email = #{email} -->
+			</if>
+			<if test="name != '' and name != null">
+				AND name = #{name}		<!-- SELECT * FROM members WHERE name = #{name} -->
+			</if>
+			<!-- else if는 없고 둘다 true라면 SELECT * FROM members WHERE email = #{email} AND name = #{name}으로 조회 -->
+		</where>
+	</select>
+	
+	<!-- 동적 SQL문 생성 : CHOOSE -->
+	<select id="selectMemberChoose" resultMap="mVo" parameterType="memVo">
+		SELECT * FROM members
+		
+		<where>
+			<choose>
+				<when test="email != '' and email != null and name != '' and name != null">
+					 email = #{email} AND name = #{name}
+				</when>
+				<!-- if와 다르게 choose when은 앞에가 false일때만 뒤로 넘어온다. -->
+				<when test="email != '' and email != null">
+					email = #{email}
+				</when>
+				<when test="name != '' and name != null">
+					name = #{name}
+				</when>
+			</choose>
+		</where>
+		ORDER BY id ASC
+	</select>
+	
+	<!-- 동적 SQL문 생성 : ForEach -->
+	<!-- 
+		<foreach item="item" collection="list" index="index" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+		
+		collection => 전달받은 것이 배열(array) 또는 리스트(list)
+		index => 순서 번호 0부터 시작
+		item => 리스트로 부터 꺼내진 하나의 데이터
+		
+		open : 구문이 시작될때 지정한 기호 추가
+		close : 구문이 끝날때 지정한 기호 추가
+		separator : 한번 이상 반복되는 경우 지정한 기호 추가
+		
+		WHERE score between 50 and 70 => 연속적인값
+		WHERE name IN ('김길동','고길동','조길동') => 불연속적인 값
+	 -->
+	 
+	 <select id="forEachSearch" resultMap="mVo" parameterType="java.util.List"> <!-- Map을 사용하는 경우 자동으로 이름을 키값으로 사용함 -->
+	 	<!-- SELECT * FROM members -->
+		<include refid="sel" />
+	 	WHERE name IN
+	 	<foreach collection="list" item="item" open="(" close=")" separator=",">
+	 		#{item}
+	 	</foreach>
+	 	ORDER BY id ASC
+	 </select>
 	
 </mapper>
